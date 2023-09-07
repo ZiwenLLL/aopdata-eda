@@ -1,27 +1,31 @@
 ---
 title: "AOP Data EDA"
 author: "Ziwen Lu"
-format: html
+format: 
+  html:
+    embed-resources: true
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+library(aopdata)
+library(tidyverse)
 ```
 
-You can add options to executable code like this
+## Read Data
 
 ```{r}
-#| echo: false
-2 * 2
+aop <- read_population(city = "brasilia")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+## Schema
+
+```{r}
+dim(aop)
+
+glimpse(aop)
+
+map_dbl(.x = aop, .f = ~mean(is.na(.x)))
+```
+
